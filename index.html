@@ -1,154 +1,313 @@
-<!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title data-translator-key="timetable">MAGIC CUBE</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	
+	<div class="container">
+		<center>
+			<img src='logo.png' id='img' />
 
-  <meta charset="UTF-8">
-  <meta name="author" content="Boris Sehovac">
-  <meta name="description" content="See if you can solve this classic puzzle game.">
-  <meta name="viewport" content="width=device-width,height=device-height,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+			<p id='title'>MAGIC <b><font color='red'>C</font><font color='royalblue'>U</font><font color='seagreen'>B</font><font color='orange'>E</font></span> PRO</b></p>
+			
+			<p id='hint'>An internet connection is required to load the cube.</p>
 
-  <title>The Cube - A Rubik's Cube Game</title>
-  <meta property="og:description" content="See if you can solve this classic puzzle game."/>
-  <meta property="og:image" content="assets/icons/meta-image.png"/>
-  <meta property="og:site_name" content="The Cube - A Rubik's Cube Game"/>
-  <meta property="og:title" content="The Cube - A Rubik's Cube Game"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://bsehovac.github.io"/>
+            <p id='hint'>
+                <b>HOW TO USE PRO FEATURES:</b>
+                <br>Click the Play Game button.
+                At the bottom right of the page, you will see the Settings icon.
+                Click the Settings icon and change whatever you want.
+            </p>
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:creator" content="@BorisSehovac">
-  <meta name="twitter:title" content="The Cube - A Rubik's Cube Game">
-  <meta name="twitter:image" content="https://bsehovac.github.io/the-cube/assets/icons/twitter-card.png">
-  <meta name="twitter:description" content="See if you can solve this classic puzzle game.">
+			<!--<a download href='https://play.google.com/store/apps/details?id=com.fazil.cubepro'><button id='option' style='border:2px solid tomato;background:tomato;'><b>Download PRO (No Ads)</b></button></a><br>-->
 
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="The Cube">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="translucent-black">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
-  <link rel="manifest" href="assets/icons/site.webmanifest">
-  <link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#5bbad5">
-  <link rel="shortcut icon" href="assets/icons/favicon.ico">
-  <meta name="theme-color" content="#ffffff">
+			<a href='home_pro.html'>
+				<button class='option' id='option'>
+					<i class="fa fa-gamepad"> </i> <span>Play Game</span>
+				</button>
+			</a>
 
-  <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+			<a href='solver/rubiks.html'>
+				<button class='option' id='option'>
+					<i class="fa fa-cube"> </i> <span>Cube Solver</span>
+				</button>
+			</a>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128627708-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-128627708-1');
-  </script>
+			<!--
+			<a href='https://play.google.com/store/apps/developer?id=Alloask+Technologies'>
+				<button class='option' id='option'>
+					<i class="fa fa-android"> </i> <span>More Apps</span>
+				</button>
+			</a>
+			-->
 
-  <script>
-    window.gameVersion = '0.99.2';
-  </script>
+			<br><br><br>
 
-</head>
-<body>
-
-  <div class="ui">
-
-    <div class="ui__background"></div>
-
-    <div class="ui__game"></div>
-
-    <div class="ui__texts">
-      <h1 class="text text--title">
-        <span>THE</span>
-        <span>CUBE</span>
-      </h1>
-      <div class="text text--note">
-        Double tap to start
-      </div>
-      <div class="text text--timer">
-        0:00
-      </div>
-      <div class="text text--complete">
-        <span>Complete!</span>
-      </div>
-      <div class="text text--best-time">
-        <icon trophy></icon>
-        <span>Best Time!</span>
-      </div>
-    </div>
-
-    <div class="ui__prefs">
-      <range name="size" title="Cube Size" list="2,3,4,5"></range>
-      <range name="flip" title="Flip Type" list="Swift&nbsp;,Smooth,Bounce"></range>
-      <range name="scramble" title="Scramble Length" list="20,25,30"></range>
-      <range name="fov" title="Camera Angle" list="Ortographic,Perspective"></range>
-      <range name="theme" title="Color Scheme" list="Cube,Erno,Dust,Camo,Rain"></range>
-    </div>
-
-    <div class="ui__theme">
-      <range name="hue" title="Hue" color></range>
-      <range name="saturation" title="Saturation" color></range>
-      <range name="lightness" title="Lightness" color></range>
-    </div>
-
-    <div class="ui__stats">
-      <div class="stats" name="cube-size">
-        <i>Cube:</i><b>3x3x3</b>
-      </div>
-      <div class="stats" name="total-solves">
-        <i>Total solves:</i><b>-</b>
-      </div>
-      <div class="stats" name="best-time">
-        <i>Best time:</i><b>-</b>
-      </div>
-      <div class="stats" name="worst-time">
-        <i>Worst time:</i><b>-</b>
-      </div>
-      <div class="stats" name="average-5">
-        <i>Average of 5:</i><b>-</b>
-      </div>
-      <div class="stats" name="average-12">
-        <i>Average of 12:</i><b>-</b>
-      </div>
-      <div class="stats" name="average-25">
-        <i>Average of 25:</i><b>-</b>
-      </div>
-    </div>
-
-    <div class="ui__buttons">
-      <button class="btn btn--bl btn--stats">
-        <icon trophy></icon>
-      </button>
-      <button class="btn btn--br btn--prefs">
-        <icon settings></icon>
-      </button>
-      <button class="btn btn--bl btn--back">
-        <icon back></icon>
-      </button>
-      <button class="btn btn--br btn--theme">
-        <icon theme></icon>
-      </button>
-      <button class="btn btn--br btn--reset">
-        <icon reset></icon>
-      </button>
-    </div>
-
-  </div>
-
-  <script src="assets/js/three.js"></script>
-  <script src="assets/js/cube.js"></script>
-
-  <script src="upup.min.js"></script>
-  <script>
-    if (UpUp !== null) {
-      UpUp.start({
-        'cache-version': window.gameVersion,
-        'content-url': 'index.html',
-        'assets': [ 'assets/css/styles.css', 'assets/js/three.js', 'assets/js/cube.js' ]
-      });
-    }
-  </script>
-
-</body>
+		</center>
+	</div>
 </html>
+
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+:root{
+	--theme-color:royalblue;
+	--secondary-color:dodgerblue;
+	--white-color:white;
+}
+
+html{
+	background:linear-gradient(180deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+}
+
+html, a, button{
+	font-family: 'Quicksand', sans-serif;
+}
+
+/* The element to apply the animation to */
+html {
+	background:linear-gradient(180deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	animation-name: example;
+  	animation-duration: 8s;
+	animation-iteration-count: infinite;
+}
+
+/* The animation code */
+@keyframes example {
+  	0%   {
+		background:linear-gradient(180deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	2.5%  {
+		background:linear-gradient(189deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	5%  {
+		background:linear-gradient(198deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	7.5%  {
+		background:linear-gradient(207deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	10%  {
+		background:linear-gradient(216deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	12.5%  {
+		background:linear-gradient(225deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	15%  {
+		background:linear-gradient(234deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	17.5%  {
+		background:linear-gradient(243deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	20%  {
+		background:linear-gradient(252deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	22.5%  {
+		background:linear-gradient(261deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+  	25%  {
+		background:linear-gradient(270deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	27.5%  {
+		background:linear-gradient(279deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	30%  {
+		background:linear-gradient(288deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	32.5%  {
+		background:linear-gradient(297deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	35%  {
+		background:linear-gradient(306deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	37.5%  {
+		background:linear-gradient(315deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	40%  {
+		background:linear-gradient(324deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	42.5%  {
+		background:linear-gradient(333deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	45%  {
+		background:linear-gradient(342deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	47.5%  {
+		background:linear-gradient(351deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+ 	50%  {
+		background:linear-gradient(360deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	52.5%  {
+		background:linear-gradient(9deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	55%  {
+		background:linear-gradient(18deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	57.5%  {
+		background:linear-gradient(27deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	60%  {
+		background:linear-gradient(36deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	62.5%  {
+		background:linear-gradient(45deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	65%  {
+		background:linear-gradient(54deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	67.5%  {
+		background:linear-gradient(63deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	70%  {
+		background:linear-gradient(72deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	72.5%  {
+		background:linear-gradient(81deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	75%  {
+		background:linear-gradient(90deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	77.5%  {
+		background:linear-gradient(99deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	80%  {
+		background:linear-gradient(108deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	82.5%  {
+		background:linear-gradient(117deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	85%  {
+		background:linear-gradient(126deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	87.5%  {
+		background:linear-gradient(135deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	90%  {
+		background:linear-gradient(144deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	92.5%  {
+		background:linear-gradient(153deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	95%  {
+		background:linear-gradient(162deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+	97.5%  {
+		background:linear-gradient(171deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+
+  	100% {
+		background:linear-gradient(180deg, var(--theme-color) 0%, var(--secondary-color) 25%, deepskyblue 50%, lightblue 75%, var(--white-color) 100%);
+  	}
+}
+
+
+.container{
+	margin-top:60px;
+}
+a{
+	text-decoration:none;
+}
+
+#img{
+	width:100px;
+	object-fit:contain;
+	border-radius:10px;
+}
+
+.option{
+	border:2px solid var(--white-color);
+	border-left:10px solid var(--white-color);
+	border-right:10px solid var(--white-color);
+	margin-top:15px;
+	outline:none;
+	font-size:22px;
+	height:70px;
+	border-radius:5px;
+	color:var(--white-color);
+	width:calc(80% - 0px);
+}
+
+.option:active{
+	transform:scale(0.95);
+}
+
+.option i{
+	margin-right:5px;
+}
+
+.option span{
+	left:5px;
+	position: relative;
+}
+
+#option{
+	background:linear-gradient(to right, var(--theme-color) 0%, var(--secondary-color) 50%);
+}
+#option-pro{
+	background:tomato;
+	font-weight:bold;
+}
+
+#title{
+	font-size:30px;
+	font-weight:normal;
+	background: rgba(255,255,255,0.9);
+	width:calc(80% - 20px);
+	padding:10px;
+	border-radius:5px;
+	margin:10px;
+}
+#hint{
+	color:var(--theme-color);
+	background-color:var(--white-color);
+	padding:5px;
+	border-radius:5px;
+	font-size:16px;
+	width:calc(80% - 10px);
+	margin:10px;
+}
+</style>
